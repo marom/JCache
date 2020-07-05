@@ -1,4 +1,4 @@
-import junit.framework.TestCase;
+import JCache.Cache2kConfiguration;
 import org.junit.Test;
 
 import javax.cache.Cache;
