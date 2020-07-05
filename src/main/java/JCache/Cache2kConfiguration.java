@@ -8,13 +8,16 @@ import javax.cache.spi.CachingProvider;
 
 public class Cache2kConfiguration {
 
-    public Cache configure(String cacheName) {
-
+    public CacheManager init() {
         CachingProvider cachingProvider = Caching.getCachingProvider("org.cache2k.jcache.provider.JCacheProvider");
-        CacheManager cacheManager = cachingProvider.getCacheManager();
+        return cachingProvider.getCacheManager();
+    }
+
+    public Cache configure(CacheManager manager, String cacheName) {
+
         MutableConfiguration<String, String> config
                 = new MutableConfiguration<>();
-        Cache<String, String> cache = cacheManager.createCache(cacheName, config);
+        Cache<String, String> cache = manager.createCache(cacheName, config);
         return  cache;
     }
 }
