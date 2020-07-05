@@ -1,8 +1,11 @@
 import JCache.Cache2kConfiguration;
+import JCache.Cache2kService;
 import org.junit.Test;
 
 import javax.cache.Cache;
 import javax.cache.CacheManager;
+
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,6 +32,12 @@ public class Cache2kConfigurationTest {
         Cache2kConfiguration cache2kConfiguration = new Cache2kConfiguration();
         CacheManager cacheManager = cache2kConfiguration.init();
         Cache cache = cache2kConfiguration.configure(cacheManager, "cacheFromDb");
+
+        Cache2kService cache2kService = new Cache2kService();
+        Map<Integer, String> myDataFromDb = cache2kService.loadMyDataFromDb();
+        cache.putAll(myDataFromDb);
+
+        assertEquals("OK", cache.get(200));
 
     }
 }
