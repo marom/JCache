@@ -15,9 +15,9 @@ public class Cache2kConfiguration {
 
     public Cache configure(CacheManager manager, String cacheName) {
 
-        MutableConfiguration<String, String> config
+        MutableConfiguration<Integer, String> config
                 = new MutableConfiguration<>();
-        Cache<String, String> cache = manager.createCache(cacheName, config);
+        Cache<Integer, String> cache = manager.createCache(cacheName, config);
         return  cache;
     }
 }

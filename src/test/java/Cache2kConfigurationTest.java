@@ -14,12 +14,21 @@ public class Cache2kConfigurationTest {
         Cache2kConfiguration cache2kConfiguration = new Cache2kConfiguration();
         CacheManager cacheManager = cache2kConfiguration.init();
         Cache cache = cache2kConfiguration.configure(cacheManager, "marekCache1");
-        cache.put("key1", "value1");
-        cache.put("key2", "value2");
+        cache.put(100, "value1");
+        cache.put(200, "value2");
 
-        assertEquals("value2", cache.get("key2"));
+        assertEquals("value2", cache.get(200));
 
         cacheManager.destroyCache("marekCache1");
+
+    }
+
+    @Test
+    public void loadDataFromDb() {
+
+        Cache2kConfiguration cache2kConfiguration = new Cache2kConfiguration();
+        CacheManager cacheManager = cache2kConfiguration.init();
+        Cache cache = cache2kConfiguration.configure(cacheManager, "cacheFromDb");
 
     }
 }
